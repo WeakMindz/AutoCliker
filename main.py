@@ -1,6 +1,10 @@
 import pyautogui
 import time
-
+import random 
+randomcps  = 0
+def guard(randomcps):
+    randomcps = random.randint(8,12)
+    return randomcps 
 #Might have to make it random 
 cps = 10 
 delay = 0.16 / cps
