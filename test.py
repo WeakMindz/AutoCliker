@@ -14,11 +14,14 @@ ctk.set_appearance_mode("dark")
 clicking = False
 def button_event():
     print("button pressed")
-
+time.sleep(3)
+clicking = True
 button = ctk.CTkButton(app, text="CTkButton", command=button_event)
 while clicking == True:
     mouse.click(Button.left)
     time.sleep(0.09)
-    
-
+def isClicking():
+    cps = input("enter the cps")
+    delay = 1/cps 
+    time.sleep(delay)
 app.mainloop()
