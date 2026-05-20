@@ -4,12 +4,34 @@ A lightweight desktop auto clicker built with Python, featuring a dark-themed GU
 
 ---
 
+## Changelog
+
+### feat: add Start, Stop, Help buttons + CPS input + mode selector
+
+- Add green Start button and red Stop button positioned bottom-left and bottom-right
+- Add grey Help button linking to the GitHub repo via `webbrowser`
+- Add Mode dropdown (`CTkOptionMenu`) with Normal and Jitter options
+- Add CPS text input box (`CTkTextbox`) for typing a clicks-per-second value
+- Add mode and CPS labels to the GUI
+- Resize window to 350×500
+- Rename window title to `WeakMindz AutoClicker`
+
+### feat: add dark/light mode toggle via CTkSwitch
+
+- Add CTkSwitch with `switch_on()` callback
+- Toggle between dark/light appearance using `ctk.set_appearance_mode()`
+- Switch positioned top-right with `grid sticky="ne"`
+
+---
+
 ## Features
 
+- Dark/light mode toggle switch
+- Green Start button and red Stop button
+- Mode selector: Normal or Jitter
+- CPS (clicks per second) input box
+- Help button linking to the GitHub repo
 - Dark mode GUI via CustomTkinter
-- Automated left mouse button clicking
-- Configurable click interval (currently set to ~0.09s / ~11 clicks per second)
-- Simple start/stop button interface
 
 ---
 
@@ -30,54 +52,47 @@ pip install customtkinter pynput
 ## How to Run
 
 ```bash
-python autoclicker.py
+python main.py
 ```
 
-A 400×300 dark-themed window will appear. Use the button to control clicking behavior.
+A 350×500 window will appear with all controls ready to use.
 
 ---
 
-## Usage
+## Instructions
 
-1. Launch the app.
-2. Position your mouse where you want clicks to occur.
-3. Press the button to start/stop the auto clicker.
-
-> **Note:** The click loop currently runs at approximately **11 clicks per second** (0.09s delay between clicks).
+1. **Launch the app** by running `python main.py`.
+2. **Set your CPS** by typing a number into the CPS input box (e.g. `10` for 10 clicks per second).
+3. **Choose a mode** from the dropdown:
+   - `Normal` — clicks at a steady, fixed rate.
+   - `Jitter` — adds slight randomness between clicks to simulate human behaviour.
+4. **Press Start** (green button, bottom-left) to begin auto clicking.
+5. **Press Stop** (red button, bottom-right) to stop auto clicking.
+6. **Toggle the theme** using the switch in the top-right corner to switch between dark and light mode.
+7. **Need help?** Press the Help button to open the GitHub page.
 
 ---
 
 ## Project Structure
 
 ```
-autoclicker.py   # Main application file
-README.md        # This file
+main.py      # Main application file
+README.md    # This file
 ```
 
 ---
 
 ## Known Issues / TODO
 
-- [ ] The click loop (`while clicking == True`) runs **before** `app.mainloop()` is called, meaning the GUI never renders and the loop never actually triggers (since `clicking` starts as `False`). This needs to be moved into a background thread.
-- [ ] The button does not yet toggle the `clicking` variable — `button_event` only prints to console.
-- [ ] No hotkey support implemented yet (keyboard import is unused).
-- [ ] No CPS (clicks per second) selector in the UI.
-- [ ] No support for right-click or middle-click yet.
-
----
-
-## Planned Improvements
-
-- Toggle clicking on/off via button and/or hotkey (e.g. F6)
-- Adjustable CPS slider in the GUI
-- Click type selector (left, right, middle)
-- Random interval jitter to simulate human clicking (groundwork already imported via `random`)
-- Hold-to-click mode
+- [ ] Start and Stop buttons are not yet wired to the click loop (both currently call `start_pressed`)
+- [ ] Click loop needs to run in a background thread so the GUI stays responsive
+- [ ] CPS input box is not yet connected to the click speed
+- [ ] Jitter mode is listed but not yet implemented
+- [ ] Hotkey support not yet implemented (`keyboard` import unused)
+- [ ] No right-click or middle-click support yet
 
 ---
 
 ## License
 
 This project is for personal/educational use. Use responsibly and only on applications/games where auto clicking is permitted.
-
-
