@@ -96,3 +96,4 @@ README.md    # This file
 ## License
 
 This project is for personal/educational use. Use responsibly and only on applications/games where auto clicking is permitted.
+<img width="343" height="468" alt="image" src="https://github.com/user-attachments/assets/912cf70a-a143-4478-ad23-9cc89bfba44f" />
