@@ -1,49 +1,30 @@
 # WeakMindz AutoClicker
 
-A lightweight desktop auto clicker built with Python, featuring a dark-themed GUI powered by CustomTkinter.
-
----
-
-## Changelog
-
-### feat: add Start, Stop, Help buttons + CPS input + mode selector
-
-- Add green Start button and red Stop button positioned bottom-left and bottom-right
-- Add grey Help button linking to the GitHub repo via `webbrowser`
-- Add Mode dropdown (`CTkOptionMenu`) with Normal and Jitter options
-- Add CPS text input box (`CTkTextbox`) for typing a clicks-per-second value
-- Add mode and CPS labels to the GUI
-- Resize window to 350×500
-- Rename window title to `WeakMindz AutoClicker`
-
-### feat: add dark/light mode toggle via CTkSwitch
-
-- Add CTkSwitch with `switch_on()` callback
-- Toggle between dark/light appearance using `ctk.set_appearance_mode()`
-- Switch positioned top-right with `grid sticky="ne"`
+A lightweight, fully-featured desktop auto clicker built with Python and CustomTkinter. Dark-themed, keyboard-controllable, and simple to use.
 
 ---
 
 ## Features
 
-- Dark/light mode toggle switch
-- Green Start button and red Stop button
-- Mode selector: Normal or Jitter
-- CPS (clicks per second) input box
-- Help button linking to the GitHub repo
-- Dark mode GUI via CustomTkinter
+- Adjustable CPS (clicks per second) from 1 to 100 with stepper buttons
+- Normal and Jitter click modes — Jitter adds randomised timing to simulate human behaviour
+- Left, right, and middle mouse button support
+- Click at your current cursor position or lock to a specific screen coordinate
+- Rebindable start/stop hotkeys (default F6 / F7)
+- Dark and light theme toggle
+- Status indicator showing idle or running state
 
 ---
 
 ## Requirements
 
-- Python 3.7+
-- [customtkinter](https://github.com/TomSchimansky/CustomTkinter)
-- [pynput](https://pypi.org/project/pynput/)
+- Python 3.7 or higher
+- customtkinter
+- pynput
 
-Install dependencies with:
+Install both dependencies with:
 
-```bash
+```
 pip install customtkinter pynput
 ```
 
@@ -51,49 +32,73 @@ pip install customtkinter pynput
 
 ## How to Run
 
-```bash
+```
 python main.py
 ```
 
-A 350×500 window will appear with all controls ready to use.
-
 ---
 
-## Instructions
+## Usage
 
-1. **Launch the app** by running `python main.py`.
-2. **Set your CPS** by typing a number into the CPS input box (e.g. `10` for 10 clicks per second).
-3. **Choose a mode** from the dropdown:
-   - `Normal` — clicks at a steady, fixed rate.
-   - `Jitter` — adds slight randomness between clicks to simulate human behaviour.
-4. **Press Start** (green button, bottom-left) to begin auto clicking.
-5. **Press Stop** (red button, bottom-right) to stop auto clicking.
-6. **Toggle the theme** using the switch in the top-right corner to switch between dark and light mode.
-7. **Need help?** Press the Help button to open the GitHub page.
+### CPS
+Type a number between 1 and 100 into the CPS box, or use the up/down arrows to adjust. This controls how many times per second the auto clicker fires.
+
+### Click Mode
+- **Normal** — clicks at a steady, fixed interval
+- **Jitter** — adds up to ±20% random variance between clicks to mimic natural human input
+
+### Mouse Button
+Choose between Left, Right, or Middle click. The selected button is highlighted in blue.
+
+### Click Location
+- **Current position** — the clicker fires wherever your cursor is at the time of each click
+- **Pick location** — press the Pick button, the window minimises, then click anywhere on your screen to lock the clicker to those exact coordinates. The X and Y values will display in the app.
+
+### Hotkeys
+By default, **F6** starts the clicker and **F7** stops it. To rebind:
+1. Click the green Start or red Stop hotkey button
+2. It will flash yellow and say "Press any key…"
+3. Press any key on your keyboard — it binds immediately
+
+Hotkeys work even when the app is not in focus, so you can start and stop clicking without switching windows.
+
+### Start / Stop Buttons
+The green Start button and red Stop button at the bottom also control the clicker directly.
 
 ---
 
 ## Project Structure
 
 ```
-main.py      # Main application file
-README.md    # This file
+main.py      — Full application (UI + click logic + hotkeys)
+README.md    — This file
 ```
 
 ---
 
-## Known Issues / TODO
+## Troubleshooting
 
-- [ ] Start and Stop buttons are not yet wired to the click loop (both currently call `start_pressed`)
-- [ ] Click loop needs to run in a background thread so the GUI stays responsive
-- [ ] CPS input box is not yet connected to the click speed
-- [ ] Jitter mode is listed but not yet implemented
-- [ ] Hotkey support not yet implemented (`keyboard` import unused)
-- [ ] No right-click or middle-click support yet
+**The clicker does nothing when I press Start**
+Make sure pynput is installed: `pip install pynput`
+
+**Hotkeys don't work**
+Some systems require elevated permissions for global keyboard hooks. Try running the script as administrator (Windows) or with sudo (Linux/macOS).
+
+**Pick location doesn't work**
+The window minimises briefly while waiting for your click. If it doesn't restore, click the taskbar icon to bring it back — the coordinates should still have been captured.
+
+**The app crashes on start**
+Ensure you are on Python 3.7+ and have both `customtkinter` and `pynput` installed.
+
+---
+
+## Notes
+
+- Use responsibly and only in applications or games where auto clicking is permitted.
+- The Jitter mode is designed to be less detectable by basic anti-cheat systems, but is not guaranteed to bypass any specific software.
 
 ---
 
 ## License
 
-This project is for personal/educational use. Use responsibly and only on applications/games where auto clicking is permitted.
-<img width="343" height="468" alt="image" src="https://github.com/user-attachments/assets/912cf70a-a143-4478-ad23-9cc89bfba44f" />
+Personal and educational use only.
